@@ -53,40 +53,44 @@ export default function Login() {
 
         <Card className="border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/40">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-display">
+            <CardTitle className="text-lg font-display text-white">
               {isResetMode ? "Recuperar senha" : "Entrar"}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-white/50">
               {isResetMode ? "Enviaremos um link para redefinir sua senha" : "Use suas credenciais para acessar"}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">E-mail</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  required
-                  autoComplete="email"
+                <Label htmlFor="email" className="text-white/80">E-mail</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                    className="border-white/15 bg-white/10 text-white placeholder:text-white/30 focus-visible:ring-primary"
+                  />
                 />
               </div>
 
               {!isResetMode && (
                 <div className="space-y-2">
-                  <Label htmlFor="password">Senha</Label>
+                  <Label htmlFor="password" className="text-white/80">Senha</Label>
                   <div className="relative">
-                    <Input
-                      id="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={e => setPassword(e.target.value)}
-                      required
-                      autoComplete="current-password"
+                      <Input
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        required
+                        autoComplete="current-password"
+                        className="pr-10 border-white/15 bg-white/10 text-white placeholder:text-white/30 focus-visible:ring-primary"
+                      />
                       className="pr-10"
                     />
                     <button
