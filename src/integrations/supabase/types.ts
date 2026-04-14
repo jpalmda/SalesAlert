@@ -14,16 +14,232 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts_and_notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          related_client_id: string | null
+          title: string
+          type: Database["public"]["Enums"]["alert_type"]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message: string
+          related_client_id?: string | null
+          title: string
+          type?: Database["public"]["Enums"]["alert_type"]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          related_client_id?: string | null
+          title?: string
+          type?: Database["public"]["Enums"]["alert_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_and_notifications_related_client_id_fkey"
+            columns: ["related_client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          created_at: string
+          id: string
+          is_vip: boolean
+          last_purchase_date: string | null
+          name: string
+          smartpos_id: string
+          tags: string[] | null
+          type: Database["public"]["Enums"]["client_type"]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_vip?: boolean
+          last_purchase_date?: string | null
+          name: string
+          smartpos_id: string
+          tags?: string[] | null
+          type?: Database["public"]["Enums"]["client_type"]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_vip?: boolean
+          last_purchase_date?: string | null
+          name?: string
+          smartpos_id?: string
+          tags?: string[] | null
+          type?: Database["public"]["Enums"]["client_type"]
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          created_at: string
+          frequently_bought_with: string[] | null
+          id: string
+          is_highlight_of_day: boolean
+          name: string
+          smartpos_id: string
+          stock_quantity: number
+        }
+        Insert: {
+          created_at?: string
+          frequently_bought_with?: string[] | null
+          id?: string
+          is_highlight_of_day?: boolean
+          name: string
+          smartpos_id: string
+          stock_quantity?: number
+        }
+        Update: {
+          created_at?: string
+          frequently_bought_with?: string[] | null
+          id?: string
+          is_highlight_of_day?: boolean
+          name?: string
+          smartpos_id?: string
+          stock_quantity?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      routes_and_expenses: {
+        Row: {
+          created_at: string
+          date: string
+          fuel_expense: number
+          id: string
+          route_notes: string | null
+          toll_expense: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          fuel_expense?: number
+          id?: string
+          route_notes?: string | null
+          toll_expense?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          fuel_expense?: number
+          id?: string
+          route_notes?: string | null
+          toll_expense?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      sales_history: {
+        Row: {
+          client_id: string
+          id: string
+          sale_date: string
+          smartpos_id: string
+          total_amount: number
+        }
+        Insert: {
+          client_id: string
+          id?: string
+          sale_date?: string
+          smartpos_id: string
+          total_amount?: number
+        }
+        Update: {
+          client_id?: string
+          id?: string
+          sale_date?: string
+          smartpos_id?: string
+          total_amount?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_history_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_role: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      alert_type: "inactive_client" | "low_stock" | "urgent_alert"
+      app_role: "gestor" | "vendedor"
+      client_type: "b2b_empresa" | "b2c_fisica"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +366,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      alert_type: ["inactive_client", "low_stock", "urgent_alert"],
+      app_role: ["gestor", "vendedor"],
+      client_type: ["b2b_empresa", "b2c_fisica"],
+    },
   },
 } as const
