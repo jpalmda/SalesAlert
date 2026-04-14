@@ -91,8 +91,6 @@ export default function Login() {
                         autoComplete="current-password"
                         className="pr-10 border-white/15 bg-white/10 text-white placeholder:text-white/30 focus-visible:ring-primary"
                       />
-                      className="pr-10"
-                    />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
