@@ -54,34 +54,49 @@ export type Database = {
       }
       clients: {
         Row: {
+          address: string | null
+          city: string | null
           created_at: string
           id: string
           is_vip: boolean
           last_purchase_date: string | null
           name: string
+          neighborhood: string | null
           smartpos_id: string
+          state: string | null
           tags: string[] | null
           type: Database["public"]["Enums"]["client_type"]
+          zip_code: string | null
         }
         Insert: {
+          address?: string | null
+          city?: string | null
           created_at?: string
           id?: string
           is_vip?: boolean
           last_purchase_date?: string | null
           name: string
+          neighborhood?: string | null
           smartpos_id: string
+          state?: string | null
           tags?: string[] | null
           type?: Database["public"]["Enums"]["client_type"]
+          zip_code?: string | null
         }
         Update: {
+          address?: string | null
+          city?: string | null
           created_at?: string
           id?: string
           is_vip?: boolean
           last_purchase_date?: string | null
           name?: string
+          neighborhood?: string | null
           smartpos_id?: string
+          state?: string | null
           tags?: string[] | null
           type?: Database["public"]["Enums"]["client_type"]
+          zip_code?: string | null
         }
         Relationships: []
       }
@@ -92,8 +107,10 @@ export type Database = {
           id: string
           is_highlight_of_day: boolean
           name: string
+          profit_margin: number
           smartpos_id: string
           stock_quantity: number
+          unit_price: number
         }
         Insert: {
           created_at?: string
@@ -101,8 +118,10 @@ export type Database = {
           id?: string
           is_highlight_of_day?: boolean
           name: string
+          profit_margin?: number
           smartpos_id: string
           stock_quantity?: number
+          unit_price?: number
         }
         Update: {
           created_at?: string
@@ -110,8 +129,10 @@ export type Database = {
           id?: string
           is_highlight_of_day?: boolean
           name?: string
+          profit_margin?: number
           smartpos_id?: string
           stock_quantity?: number
+          unit_price?: number
         }
         Relationships: []
       }
@@ -166,6 +187,39 @@ export type Database = {
           route_notes?: string | null
           toll_expense?: number
           user_id?: string
+        }
+        Relationships: []
+      }
+      sales_goals: {
+        Row: {
+          achieved_amount: number
+          created_at: string
+          id: string
+          month: number
+          target_amount: number
+          updated_at: string
+          user_id: string
+          year: number
+        }
+        Insert: {
+          achieved_amount?: number
+          created_at?: string
+          id?: string
+          month: number
+          target_amount?: number
+          updated_at?: string
+          user_id: string
+          year: number
+        }
+        Update: {
+          achieved_amount?: number
+          created_at?: string
+          id?: string
+          month?: number
+          target_amount?: number
+          updated_at?: string
+          user_id?: string
+          year?: number
         }
         Relationships: []
       }
