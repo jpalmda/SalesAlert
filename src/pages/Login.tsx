@@ -74,7 +74,6 @@ export default function Login() {
                     autoComplete="email"
                     className="border-white/15 bg-white/10 text-white placeholder:text-white/30 focus-visible:ring-primary"
                   />
-                />
               </div>
 
               {!isResetMode && (
