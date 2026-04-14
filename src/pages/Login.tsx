@@ -41,54 +41,55 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 bg-background">
+    <div className="flex min-h-screen items-center justify-center px-4 bg-gradient-to-br from-[hsl(220,30%,8%)] via-[hsl(24,60%,12%)] to-[hsl(220,25%,6%)]">
       <div className="w-full max-w-sm animate-slide-up">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/30">
             <Zap className="h-8 w-8 text-primary-foreground" />
           </div>
-          <h1 className="font-display text-3xl font-bold tracking-tight">SalesAlert</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Inteligência para vendas em campo</p>
+          <h1 className="font-display text-3xl font-bold tracking-tight text-white">SalesAlert</h1>
+          <p className="mt-1 text-sm text-white/60">Inteligência para vendas em campo</p>
         </div>
 
-        <Card className="border-0 shadow-xl shadow-primary/5">
+        <Card className="border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/40">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-display">
+            <CardTitle className="text-lg font-display text-white">
               {isResetMode ? "Recuperar senha" : "Entrar"}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-white/50">
               {isResetMode ? "Enviaremos um link para redefinir sua senha" : "Use suas credenciais para acessar"}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">E-mail</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  required
-                  autoComplete="email"
-                />
+                <Label htmlFor="email" className="text-white/80">E-mail</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                    className="border-white/15 bg-white/10 text-white placeholder:text-white/30 focus-visible:ring-primary"
+                  />
               </div>
 
               {!isResetMode && (
                 <div className="space-y-2">
-                  <Label htmlFor="password">Senha</Label>
+                  <Label htmlFor="password" className="text-white/80">Senha</Label>
                   <div className="relative">
-                    <Input
-                      id="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={e => setPassword(e.target.value)}
-                      required
-                      autoComplete="current-password"
-                      className="pr-10"
-                    />
+                      <Input
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        required
+                        autoComplete="current-password"
+                        className="pr-10 border-white/15 bg-white/10 text-white placeholder:text-white/30 focus-visible:ring-primary"
+                      />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
